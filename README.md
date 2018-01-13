@@ -3,11 +3,11 @@
 
 ## Finished Tutorials
 
-1. [2D breakout game using pure JavaScript](###Game 001 - 2D breakout game using pure JavaScript)
+1. [2D breakout game using pure JavaScript](#001)
 
 ---
 
-### Game 001 - 2D breakout game using pure JavaScript
+### <a id="001"></a> Game 001 - 2D breakout game using pure JavaScript
 
 - Two dimensional arrays
 - key and mouse detection
