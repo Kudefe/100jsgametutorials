@@ -5,6 +5,9 @@ canvas.style.border = '1px solid'
 //score
 let score = 0
 
+//lives
+let lives = 3
+
 //canvas height and width
 let ch = canvas.height
 let cw = canvas.width
@@ -48,6 +51,8 @@ for (c = 0; c < brickColumnCount; c++) {
 
 document.addEventListener('keydown', keyDownHandler, false)
 document.addEventListener('keyup', keyUpHandler, false)
+//mouse
+document.addEventListener('mousemove', mouseMoveHandler, false)
 
 function keyDownHandler (e) {
     if (e.keyCode === 39) {
@@ -65,6 +70,14 @@ function keyUpHandler (e) {
     }
 }
 
+//mouse handler
+function mouseMoveHandler (e) {
+    var relativeX = e.clientX - canvas.offsetLeft
+    if (relativeX > 0 && relativeX < cw) {
+        paddleX = relativeX - paddleWidth/2
+    }
+}
+
 //collision detection
 function collisionDetection () {
     for (c = 0; c < brickColumnCount; c++) {
@@ -76,6 +89,11 @@ function collisionDetection () {
                 if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy
                     b.status = 0
+                    score++
+                    if (score === brickRowCount * brickColumnCount) {
+                        alert('WIN')
+                        document.location.reload()
+                    }
                 }                
             }
         }
@@ -128,14 +146,23 @@ function drawScore () {
     ctx.fillText('Score: ' + score, 8, 20)
 }
 
+//lives
+function drawLives () {
+    ctx.font = '16px Arial'
+    ctx.fillStyle = '#0095DD'
+    ctx.fillText('Lives: ' + lives, cw - 65, 20)
+}
+
 //game- Drawing loop
 function draw() {
     ctx.clearRect(0, 0, cw, ch) //clear canvas every time draw is called
     drawBall() //create the ball
     drawPaddle()
+    drawScore()
+    drawLives()
     drawBricks()
     collisionDetection()
-    drawScore()
+
     x += dx
     y += dy
 
@@ -151,8 +178,17 @@ function draw() {
        if (x > paddleX && x < paddleX + paddleWidth) {
            dy = -dy
        } else {
-           alert('Game Over')
-           document.location.reload()
+           lives--
+           if (!lives) {
+               alert('Game Over')
+               document.location.reload()
+           } else {
+               x = cw / 2
+               y = ch - 30
+               dx = 2
+               dy = -2
+               paddleX = (cw - paddleWidth) / 2
+           }
        }
     }
 
@@ -163,6 +199,8 @@ function draw() {
     else if(leftPressed && paddleX > 0) {
         paddleX -= 7
     }
+
+    requestAnimationFrame(draw)
 }
 
-setInterval(draw, 10)
+draw()
