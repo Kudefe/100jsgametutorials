@@ -7,7 +7,7 @@
 
 ---
 
-### 2D breakout game using pure JavaScript
+### Game 001 - 2D breakout game using pure JavaScript
 
 - Two dimensional arrays
 - key and mouse detection
