@@ -9,9 +9,9 @@
 
 ### 2D breakout game using pure JavaScript
 
-..* Two dimensional arrays
-..* key and mouse detection
-..* Collision detection
-..* Score tracking
-..* Canvas drawing
-..* Ball movement
+- Two dimensional arrays
+- key and mouse detection
+- Collision detection
+- Score tracking
+- Canvas drawing
+- Ball movement
