@@ -41,9 +41,9 @@ let brickPadding = 10
 let brickOffsetTop = 30
 let brickOffsetLeft = 30
 
-for (c = 0; c < brickColumnCount; c++) {
+for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = []
-    for (r = 0; r < brickRowCount; r++) {
+    for (let r = 0; r < brickRowCount; r++) {
         bricks[c][r] = { x: 0, y: 0, status: 1 }
     }
 }
@@ -72,7 +72,7 @@ function keyUpHandler (e) {
 
 //mouse handler
 function mouseMoveHandler (e) {
-    var relativeX = e.clientX - canvas.offsetLeft
+    let relativeX = e.clientX - canvas.offsetLeft
     if (relativeX > 0 && relativeX < cw) {
         paddleX = relativeX - paddleWidth/2
     }
@@ -80,9 +80,9 @@ function mouseMoveHandler (e) {
 
 //collision detection
 function collisionDetection () {
-    for (c = 0; c < brickColumnCount; c++) {
-        for (r = 0; r < brickRowCount; r++) {
-            var b = bricks[c][r]
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            let b = bricks[c][r]
 
             //calculations
             if (b.status === 1) {
@@ -102,11 +102,11 @@ function collisionDetection () {
 
 //draw bricks
 function drawBricks () {
-    for (c = 0; c < brickColumnCount; c++) {
-        for (r = 0; r < brickRowCount; r++) {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
             if (bricks[c][r].status === 1) {
-                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft
-                var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop
+                let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft
+                let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop
                 bricks[c][r].x = brickX
                 bricks[c][r].y = brickY
                 ctx.beginPath()
