@@ -90,12 +90,10 @@ function draw () {
     context.fillStyle='#000'
     context.font='20px sans-serif'
     context.fillText('Score : ' + score, 10, cvs.height - 20)
-    
-    
-    
+
 
     requestAnimationFrame(draw)
-    
+
 }
 
 draw();
